@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Description
+This is a simple weather application that on initial load shows the forecast for today and the next 4 days.
+When a day is selected, the user is taken to a page where they can see the forecast for this day in 3-hour steps.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The application uses the free version of OpenWeather API (https://openweathermap.org/api).
 
-## Available Scripts
+## Known issues and workarounds
+Due to limitations of the free version, only the https://openweathermap.org/forecast5 endpoint is used, which returns a 5-day forecast in 3-hour steps.
+This leads to several issues:
+1. There isn't a single average temperature for the day (including min and max temps - those are available for each 3-hour step, not for the whole day). In order for the app to display a single day temperature, an average of all 3-hour temperatures provided for this day (at the time of fetching the results, so the number of temperatures can vary) has been calculated.
+2. Weather alerts are not available
+3. Since the call to this endpoint always returns 80 timestamps (5 days x 8 3-hour steps), sometimes a sixth day is shown to the user, depending on what time of day the app is ran. I have decided to leave that as is, since it felt more natural - if it's nearing the end of the first day, a user might want to be able to see a bit further in time.
+4. Descriptions and icons in most cases are different for each 3-hour step and as such that proves to be a design challenge when deciding how to display an "average" description/icon for the daily forecast. A rotating approach was tested where all descriptions and icons were being changed every 2 seconds to display them all, but that had its difficulties and didn't feel very informative. Therefore, this was solved by displaying the most common weather icon and description.
+
+## API key!
+The key is part of React's environmental variables for security reasons, which in turn are part of the .gitignore file.
+In order to access the weather information, you'd have to insert your OpenWeather API key in the .env file in the root of the project
+Example: REACT_APP_OPENWEATHER_KEY={API_KEY}
+
+
+## Installing and running the project
+
+In order to install all dependencies, in the project directory, you need to run:
+
+### `npm/yarn install`
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm/yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

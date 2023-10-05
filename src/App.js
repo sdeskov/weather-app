@@ -25,7 +25,9 @@ function App() {
   const [forecast, setForecast] = useState(null);
   const [weatherStatus, setWeatherStatus] = useState(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [secondaryIndex, setSecondaryIndex] = useState(0);
 
 
 
@@ -79,10 +81,6 @@ function App() {
           setCurrentLocation(data.city.name + ", " + data.city.country);
           formatWeatherData(data.list);
 
-          // // reset the interval
-          // setCurrentIndex(0);
-
-
         })
         .catch((error) => {
           console.error('Error fetching weather data:', error);
@@ -96,6 +94,24 @@ function App() {
 
 
   }, [lat, long, tempMode]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setSecondaryIndex(prevSecondaryIndex => {
+  //       // Check if there are more descriptions for the current date
+  //       if (prevSecondaryIndex < forecast[Object.keys(forecast)[currentIndex]].descriptions.length - 1) {
+  //         return prevSecondaryIndex + 1;
+  //       } else {
+  //         // Move to the next date
+  //         setCurrentIndex(prevIndex => (prevIndex + 1) % Object.keys(forecast).length);
+  //         return 0;
+  //       }
+  //     });
+  //   }, 1000);
+
+  //   // Cleanup the interval on unmount
+  //   return () => clearInterval(interval);
+  // }, [currentIndex, forecast]);
 
   /**
        * Format the weather data;
@@ -145,7 +161,9 @@ function App() {
       formattedData[date] = {
         averageTemp: Math.trunc(fiveDayData[date].tempSum / fiveDayData[date].count),
         icons: fiveDayData[date].icons,
+        commonIcon: getMostCommon(fiveDayData[date].icons),
         descriptions: fiveDayData[date].descriptions,
+        commonDescription: getMostCommon(fiveDayData[date].descriptions),
         temperatures: fiveDayData[date].temperatures,
         feelsLikeTemps: fiveDayData[date].feelsLikeTemps,
         hours: fiveDayData[date].hours
@@ -176,6 +194,35 @@ function App() {
     return date.toLocaleDateString(undefined, format);
   }
 
+  /**
+   * Takes an array and returns the most common item from it.
+   * Complexity should be O(n)
+   * 
+   * @param {array} array 
+   * @returns most common item
+   */
+  const getMostCommon = (array) => {
+    const frequencyMap = {};
+
+    let mostCommonItem = null;
+    let maxFrequency = 0;
+
+    for (const item of array) {
+      if (frequencyMap[item]) {
+        frequencyMap[item]++;
+      } else {
+        frequencyMap[item] = 1;
+      }
+
+      if (frequencyMap[item] > maxFrequency) {
+        mostCommonItem = item;
+        maxFrequency = frequencyMap[item];
+      }
+    }
+
+    return mostCommonItem;
+  }
+
   return (
     <>
       {apiData ? (
@@ -197,7 +244,8 @@ function App() {
                   tempMode={tempMode}
                   formatDate={formatDate}
                   forecast={forecast}
-                  currentIndex={currentIndex}
+                  // currentIndex={currentIndex}
+                  // secondaryIndex={secondaryIndex}
                 />
               }
             />

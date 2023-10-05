@@ -18,14 +18,14 @@ function DailyWeather(props) {
                     <div className="temperature-container">
                         {/* icon */}
                         <img
-                            alt={props.forecast[date].descriptions[props.currentIndex]}
-                            src={`http://openweathermap.org/img/w/${props.forecast[date].icons[props.currentIndex]}.png`}
+                            alt={props.forecast[date].commonDescription}
+                            src={`http://openweathermap.org/img/w/${props.forecast[date].commonIcon}.png`}
                         />
                         {/* average temperature */}
                         <h1>{props.forecast[date].averageTemp}&#176;{props.tempMode === "metric" ? "C" : "F"}</h1>
                     </div>
 
-                    <p>{props.forecast[date].descriptions[props.currentIndex]}</p>
+                    <p>{props.forecast[date].commonDescription}</p>
                 </div>
             ))}
         </div>
