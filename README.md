@@ -2,6 +2,9 @@
 This is a simple weather application that on initial load shows the forecast for today and the next 4 days.
 When a day is selected, the user is taken to a page where they can see the forecast for this day in 3-hour steps.
 
+The user can also select to use metric or imperial mode for the temperature scale. This is being stored in the browser's local storage to that the preference is kept.
+NOTE: Each time the temperature mode is selected, the API is fetched again. This is done in order for the user to get the most up-to-date information.
+
 The application uses the free version of OpenWeather API (https://openweathermap.org/api).
 
 ## Known issues and workarounds
