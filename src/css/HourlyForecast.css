@@ -1,0 +1,84 @@
+/* Style the weather container */
+.weather-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+/* Style the date header */
+.date-header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Style the weather columns */
+.weather-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Style each weather column */
+.column {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 0 10px rgba(190, 124, 0, 0.3);
+    max-width: 350px;
+}
+
+/* Style the row elements */
+.row {
+    margin: 5px 0;
+}
+
+/* Style the hour text */
+.row .hour {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* Style the "feels like" temperature text */
+.row .feels-like {
+    color: #9b9b9b;
+}
+
+/* Style the weather description text */
+.row .description {
+
+}
+
+/* Style the weather icon */
+.weather-info {
+    display: flex;
+    align-items: center;
+    /* Vertically center icon and temperature */
+}
+
+.weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    /* Add margin between icon and temperature */
+}
+
+/* Style the temperature text */
+.weather-info h3 {
+    font-size: 1.5rem;
+    margin: 10px 5px;
+    color: #ffa500;
+}
+
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .weather-columns {
+        flex-direction: column;
+    }
+}

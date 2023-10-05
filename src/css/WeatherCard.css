@@ -1,0 +1,69 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(190, 124, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  /* max-width: 300px; */
+  /* margin: 0 auto; */
+  margin-top: 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Temperature and Icon Container Styles */
+.temperature-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Temperature Styles */
+.card h1 {
+  font-size: 2.5rem;
+  margin: 0 10px;
+  color: #ffa500;
+}
+
+/* Icon Styles */
+.card img {
+  width: 80px;
+  height: 80px;
+  margin: 0;
+}
+
+/* Description Styles */
+.card p {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Media Query for Mobile */
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+  }
+
+  .card h1 {
+    font-size: 2rem;
+  }
+
+  .card h4 {
+    font-size: 1rem;
+  }
+}
